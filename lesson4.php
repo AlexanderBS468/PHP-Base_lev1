@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
+		<link rel="stylesheet" type="text/css" href="/style/css/style.css">
 		<meta charset="UTF-8">
 		<?php
-			$title = 'Third lesson';
-			$h1 = 'lesson#3';
+			$title = 'lesson#4';
+			$h1 = 'lesson#4';
 			$user = 'Alexander';
-			$date = '17.04.2018';
+			$date = '18.04.2018';
 		?>
 		<title><?php echo "$title"; ?></title>
 	</head>
@@ -18,205 +19,44 @@
 		<a href="/index.php">Ha main</a><br>
 		<!-- CODE -->
 		<?
-		echo "<br>Task #1<br><br>";
-		$n = 100;
-		$i = 0;
-		while ($i <= $n) {
-			if (($i % 3) == 0) echo "$i, ";
-		$i++;
-		}
-		echo "<br>=======================<br>Task #2<br><br>";
-		$n = 10;
-		$i = 0;
-		do{
-			if ($i != 0) {
-				$res = (($i % 2) == 0) ? " Четное. ": "Не четное. ";
+		$nf = 0;
+		$dir = './image/thumbs/';
+		$dirB = './image/';
+		$handle = opendir($dir);
+		$fsize[] = null;
+		while (false !== ($file = readdir($handle))) {
+			$path_info = pathinfo($file);
+			$GLOBALS["ftype"] = $path_info[extension];
+			$fsize[$nf] = filesize($dir . $file);
+			if (($file != "..") and ($file != ".") and ($ftype == "jpg")) {
+				$pic[$nf] = $file;
+				$nf++;
 			}
-			else $res = " Это ноль. ";
-			echo "$i - $res";
-			$i++;
-		} while ($i <= $n);
-		echo "<br>=======================<br>Task #3<br><br>";
-		$arrayObl = array(
-			"Иркутская область" => array(
-		    	0 => "Иркутск",
-				1 => "Ангарск",
-				2 => "Братск",
-				3 => "Железногорск-Илимский"
-			),
-			"Красноярская область" => array(
-				0 => "Красноярск",
-				1 => "Зеленогорск"
-			),
-			"Московская область" => array(
-				0 => "Москва",
-				1 => "Зеленоград",
-				2 => "Клин"
-			),
-		);
-		foreach($arrayObl as $obl=>$mas){
-			echo "$obl: ";
-			$total = count($mas);
-			foreach($mas as $key=>$value){
-				if ($key != $total-1) { echo "$value, ";} else { echo "$value. <br>"; }
-        	};
-    	};
-        echo "<br>=======================<br>Task #4<br><br>";
-        $arrayWord = array(
-        	'а' => 'a',
-        	'б' => 'b',
-			'в' => 'v',
-			'г' => 'g',
-        	'д' => 'd',
-			'е' => 'e',
-			'ё' => 'yo',
-        	'ж' => 'zh',
-			'з' => 'z',
-			'и' => 'i',
-        	'й' => 'j',
-			'к' => 'k',
-			'л' => 'l',
-        	'м' => 'm',
-			'н' => 'n',
-			'о' => 'o',
-        	'п' => 'p',
-			'р' => 'r',
-			'с' => 's',
-        	'т' => 't',
-        	'у' => 'u',
-        	'ф' => 'f',
-        	'х' => 'x',
-			'ц' => 'c',
-			'ч' => 'ch',
-        	'ш' => 'sh',
-			'щ' => 'shh',
-			'ъ' => "'",
-        	'ы' => "y'",
-			'ь' => "''",
-			'э' => "e'",
-        	'ю' => "yu",
-			'я' => "ya",
-			'.' => '.',
-			',' => ',');
-		function translit($s) {
-			$s = (string) $s;
-			$s = str_replace(array("\n", "\r"), " ", $s);
-			$s = preg_replace("/\s+/", ' ', $s);
-			$s = trim($s);
-			$s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s);
-			$s = strtr($s, $GLOBALS["arrayWord"]);
-		  return $s;
 		}
-		echo "Привет. Написать функцию транслитерации строк.<br>";
-		echo translit("Привет. Написать функцию транслитерации строк.");
-		echo "<br>=======================<br>Task #5<br><br>";
-		$str = "Написать функцию, которая заменяет в строке пробелы на подчеркивания и возвращает видоизмененную строчку.";
-		echo $str . "<br>";
-		function replace($s) {
-			$s = str_replace(" ", "_", $s);
-			return $s;
+		$begin=0;
+		$end=count($pic)-1;
+		?>
+		<div class="text_intro">
+			<p style="font-size: 18px;">Картинная галерея.</p>
+			<p>Вывод фалов с расширением jpeg</p>
+		</div>
+		<div class="galery"><?
+		for ($i = $begin; $i <= $end; $i++) {
+			$photoBig = $dirB . mb_substr($pic[$i], 6);
+			$photo = $dir . $pic[$i];
+			?><div class="element">
+			<a href=<? echo $photoBig ?> title="Увеличить" target="_blank">
+			<img src=<? echo $photo ?> alt="увеличить">
+			</a>
+			<p>Название файла: <? echo $pic[$i] ?>. Размер файла: <? echo "$fsize[$i]"; ?> байт</p>
+			</div><? 
 		}
-		echo replace($str);
-		echo "<br>=======================<br>Task #6<br><br>";
-		$arMenu = array(
-			0 => array(
-				"id" => 1,
-				"link" => "/index.php",
-				"name" => "Главная страница",
-		    	"PARENT" => 0
-		    	),
-		    1 => array(
-		    	"id" => 2,
-				"link" => "/lesson1.php",
-				"name" => "Урок 1 - Домашнее задание",
-		    	"PARENT" => 0
-		    	),
-		    2 => array(
-		    	"id" => 3,
-				"link" => "/lesson2.php",
-				"name" => "Урок 2 - Домашнее задание",
-		    	"PARENT" => 0
-		    	),
-		    3 => array(
-		    	"id" => 4,
-				"link" => "/lesson3.php",
-				"name" => "Урок 3 - Домашнее задание",
-		    	"PARENT" => 0
-		    	),
-		    4 => array(
-		    	"id" => 5,
-		    	"link" => "/#",
-		    	"name" => "Меню с подменю",
-		    	"PARENT" => 0
-		    	),
-		    5 => array(
-		    	"id" => 6,
-		    	"link" => "/#",
-		    	"name" => "item1",
-		    	"PARENT" => 5
-		    	),
-		    6 => array(
-		    	"id" => 7,
-		    	"link" => "/#",
-		    	"name" => "item2",
-		    	"PARENT" => 5
-		    	),
-		);
-	function printmenu($arMenu) {
-		?> <ul class="menu"> <?
-		foreach($arMenu as $idMenu => $menuitem){
-			$submenu = "";
-			if ($menuitem["PARENT"] == 0) {
-				?> <li><a href=<? echo $menuitem['link']; ?> > <? echo $menuitem['name']; ?> </a> <?
-				foreach ($arMenu as $subkey => $subvalue) {
-					if($subvalue['PARENT'] == $menuitem['id']){
-						$submenu .= "<li><a href=" . $subvalue['link'] . ">" . $subvalue['name'] . "</a></li>";
-					}
-					if ($submenu != "") { ?> <ul class="submenu"><? echo "$submenu"; ?> </ul> <? }
-					?></li><?
-				}
-/*				foreach($menuitem as $key=>$value){
-					if ($key == 'link') { ?> <li> <a href=<? echo "$value"; ?> > <? }
-					if ($key == 'name') { echo "$value"; ?></a></li> <? }
-        		};
-*/
-			}
-    	};?></ul><?
-    }
-	    printmenu($arMenu);
-	    echo "<br>=======================<br>Task #7*<br><br>";
-	    function task7() {
-	    	for ($i=0; $i < 10; print $i++) { 
-	    	}
-	    }
-	    task7();
-
-	    echo "<br>=======================<br>Task #8*<br><br>";
-	    function task8() {
-	    	foreach ($GLOBALS["arrayObl"] as $key => $value) {
-			    echo "<ul><li>$key: </li><ul>";
-			    foreach ($value as $item) {
-			        if (mb_substr($item, 0, 1) == "К") 
-			        	{ echo "<li>$item </li>"; }
-			    }
-			    echo "</ul></ul>";
-			}
-	    }
-	    task8();
-	    echo "<br>=======================<br>Task #9*<br><br>";
-	    //###############option #2###########################
-	    function task9($str) {
-	    echo $str . '<br>';
-	    for ($i = 0; $i < mb_strlen($str); $i++) {
-	        $new_text = mb_substr($str, $i, 1);
-	        if ($new_text != ' ') {
-	            echo  $GLOBALS["arrayWord"][$new_text];
-	        } else {
-	            echo "_";
-	        }
-	    }
-		}
-	    task9("*Объединить две ранее написанные функции в одну, которая получает строку на русском языке, производит транслитерацию и замену пробелов на подчеркивания (аналогичная задача решается при конструировании url-адресов на основе названия статьи в блогах).");
-    	?>
+		?></div>
+		<form enctype="multipart/form-data" action="upload.php" method="POST">
+		    <?/*<input type="hidden" name="MAX_FILE_SIZE" value=<? echo($maxsize); ?> />*/?>
+		    Отправить этот файл: <input name="userfile" type="file" />
+		    <input type="submit" value="Отправить" />
+		</form>
+		<div class="footer"></div>
 	</body>
 </html>

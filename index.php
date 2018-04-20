@@ -19,7 +19,9 @@
 				<li><a href="/lesson1.php">Lesson1</a></li>
 				<li><a href="/lesson2.php">Lesson2</a></li>
 				<li><a href="/lesson3.php">Lesson3</a></li>
-				<li><a href="/accordeon.php">!!!!!!!!!!!!!!!!!!!!!!</a></li>
+				<li><a href="/lesson4.php">Lesson4</a></li>
+				<li><a href="/lesson5.php">Lesson5</a></li>
+				<li><a href="/accordeon.php">!!!!!!!!!!Accordeon!!!!!!!!!!!!</a></li>
 			</ul>			
 		</nav>
 	</body>

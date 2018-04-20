@@ -1,0 +1,43 @@
+* {
+	box-sizing: border-box;
+}
+.text_intro {
+	text-align: center;
+}
+.galery {
+	width: 100%; 
+	flex-wrap: wrap; 
+	flex-direction: row; 
+	display: flex; 
+	margin: auto;
+}
+.element {
+	margin: 0 auto; 
+	width: 400px; 
+	height: 400px; 
+	vertical-align: middle; 
+	text-align: center;
+}
+.element a {
+	height: 85%;
+	display: inline-block;
+}
+.element a img {
+	box-shadow: 0px 0px 10px 5px rgba(100,100,100,0.7); 
+	height: 100%;
+	max-width: 100%;
+}
+.element a img:hover {
+    box-shadow: 0px 0px 15px 10px rgba(50, 50, 50, 0.8);
+    transition: all 0.8s;
+ }
+form {
+	margin: 50px;
+	display: block;
+	text-align: center;
+}
+.footer {
+	display: block;
+    height: 150px;
+}
+

@@ -11,14 +11,16 @@ define("MAXFILESIZE", "5000000");
   $img_name = htmlspecialchars(trim($_FILES['userfile']['name']));
   $thumb_name = 'thumb_' . $img_name;
   $uploaddir = 'image/';
+  $uploaddirsmal = 'image/thumbs/';
   $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 	if (in_array($ext, $allowed)) {
 		if ($_FILES['userfile']['size'] <= MAXFILESIZE) {
 			if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
 				// copy($_FILES['userfile']['tmp_name'], 'image/'.$img_name)) 
 				{
+				insert_data( $img_name, $thumb_name, $uploaddir . $img_name, $uploaddirsmal . $thumb_name, $ext, $_FILES['userfile']['size']);
 				echo 'Файл успешно загружен';
-				img_resize('image/' . $img_name, 'image/thumbs/' . $thumb_name, '250', '250');
+				img_resize($uploaddir . $img_name, $uploaddirsmal . $thumb_name, '250', '250');
 			} else { echo 'Ошибка загрузки файла'; return;} 
 		} else { echo "Файл не должен превышать размер в 5 Мб!"; return; }
 	} else { echo "Файл должен иметь одно из известных расширений графических изображений (gif, jpeg или png)!"; return; }
@@ -53,4 +55,4 @@ function img_resize($src, $dest, $width, $height, $rgb = 0xFFFFFF, $quality = 10
 	return true;
     }
 ?>
-<a href="./lesson4.php" style="margin: 50px;">Назад</a>
+<a href="./lesson5.php" style="margin: 50px;">Назад</a>

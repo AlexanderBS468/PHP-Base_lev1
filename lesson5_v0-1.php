@@ -19,8 +19,6 @@
 		<a href="/index.php">Ha main</a><br>
 		<!-- CODE -->
 		<?
-		Require('dbconnect.php');
-		Require('createdb_local.php');
 		Require('page_elem.php');
 		$nf = 0;
 		$dir = './image/thumbs/';
@@ -51,10 +49,10 @@
 		</div>
 
 		<?
-		// if(isset($_GET['page'])){
-		// 	$pageon = $_GET['page'];
-		// 	navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon);
-		// } else { $pageon = 1; navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon); }
+		if(isset($_GET['page'])){
+			$pageon = $_GET['page'];
+			navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon);
+		} else { $pageon = 1; navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon); }
 		?>
 
 		<div class="galery"><?
@@ -67,14 +65,13 @@
 		} else { $pageon = 0; elments_page($pageon, $maxpicpage, $pic, $dir, $dirB, $endPic, $fsize);}
 
 		
-		$GLOBALS['conn']->close();
+
 		?></div>
 		<?
-		// if(isset($_GET['page'])){
-		// 	$pageon = $_GET['page'];
-		// 	navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon);
-		// } else { $pageon = 1; navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon); }
-		// mysqli_close($GLOBALS['conn']);
+		if(isset($_GET['page'])){
+			$pageon = $_GET['page'];
+			navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon);
+		} else { $pageon = 1; navig_page($beginpage, $maxpicpage, $begin, $endPic, $style_name, $navig, $pageon); }
 		?>
 		<form enctype="multipart/form-data" action="upload.php" method="POST">
 		    <?/*<input type="hidden" name="MAX_FILE_SIZE" value=<? echo($maxsize); ?> />*/?>

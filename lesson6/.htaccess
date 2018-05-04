@@ -1,0 +1,7 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^(.*)$
+RewriteCond %{REQUEST_URI} !^/lesson6/public/
+RewriteRule (.*) /lesson6/public/index.php

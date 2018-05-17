@@ -21,6 +21,8 @@
 				<li><a href="/lesson3.php">Lesson3</a></li>
 				<li><a href="/lesson4.php">Lesson4</a></li>
 				<li><a href="/lesson5.php">Lesson5</a></li>
+				<li><a href="/lesson6.php">Lesson6</a></li>
+				<li><a href="/lesson7.php">Lesson7</a></li>
 				<li><a href="/accordeon.php">!!!!!!!!!!Accordeon!!!!!!!!!!!!</a></li>
 			</ul>			
 		</nav>
